@@ -52,7 +52,7 @@ file.close()
 # start time
 start = time.time()
 
-# sorting algorithm
+# start algorithm
 arr = mergesort(arr)
 
 # stop time
