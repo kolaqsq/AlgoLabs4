@@ -4,6 +4,7 @@ import sys
 import time
 
 
+# sorting algorithm
 def quicksort(array):
     less = []
     equal = []
@@ -23,15 +24,25 @@ def quicksort(array):
         return array
 
 
+# reading array from file
 file = open(sys.argv[1], "r")
+# file = open('arr_unique_10.txt', "r")
 length = int(file.readline())
 file.readline()
 arr = [int(x) for x in file.readline().split(" ")]
+file.close()
 
+# start time
 start = time.time()
-arr = quicksort(arr)
-finish = time.time()
 
+# start algorithm
+arr = quicksort(arr)
+
+# stop time
+finish = time.time()
+# print(arr)
+
+# creating result file
 filename = "./results/quicksort_{}".format(sys.argv[1])
 if not os.path.exists(os.path.dirname(filename)):
     try:
@@ -40,8 +51,10 @@ if not os.path.exists(os.path.dirname(filename)):
         if exc.errno != errno.EEXIST:
             raise
 
+# saving result
 result = open(filename, "w+")
 result.write("{}\n\n{}\n\n".format(len(arr), finish - start))
 
 for i in range(len(arr)):
     result.write("{} ".format(arr[i]))
+result.close()
