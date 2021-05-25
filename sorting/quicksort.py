@@ -3,7 +3,6 @@ import os
 import sys
 import time
 
-
 # sorting algorithm
 def quicksort(array):
     less = []
@@ -24,6 +23,22 @@ def quicksort(array):
         return array
 
 
+# def quicksort2(array):
+#     less = []
+#     greater = []
+#
+#     if len(array) > 1:
+#         pivot = array[0]
+#         for i in range(1, len(array)):
+#             if array[i] < pivot:
+#                 less.append(array[i])
+#             else:
+#                 greater.append(array[i])
+#         return quicksort(less) + [pivot] + quicksort(greater)
+#     else:
+#         return array
+
+
 # reading array from file
 file = open(sys.argv[1], "r")
 # file = open('arr_unique_10.txt', "r")
@@ -37,10 +52,11 @@ start = time.time()
 
 # start algorithm
 arr = quicksort(arr)
+# arr = quicksort2([5, 2, 3, 1])
 
 # stop time
 finish = time.time()
-# print(arr)
+print(arr)
 
 # creating result file
 filename = "./results/quicksort_{}".format(sys.argv[1])
