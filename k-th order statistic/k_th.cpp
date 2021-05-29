@@ -17,7 +17,7 @@ std::vector<int> create_array(int p, int n, int q, int v) {
     return arr;
 }
 
-int partition(int* &arr, int begin, int end) {
+int partition(int *&arr, int begin, int end) {
     int piv_idx;
 
     std::swap(arr[end - 1], arr[(begin + end - 1) / 2]);
@@ -38,17 +38,17 @@ int partition(int* &arr, int begin, int end) {
     return piv_idx;
 }
 
-void k_th(int* &arr, int k, int n) {
+int k_th(int *&arr, int k, int n) {
     int begin = 0, end = n, pivot;
 
     while (true) {
         if (end - begin <= 1)
-            return;
+            return INT_MAX;
 
         pivot = partition(arr, begin, end);
 
         if (pivot == k)
-            return;
+            return k;
         else if (k < pivot)
             end = pivot;
         else
@@ -56,20 +56,20 @@ void k_th(int* &arr, int k, int n) {
     }
 }
 
-void print(std::vector<int> const &input) {
-    for (int i = 0; i < input.size(); i++) {
-        std::cout << input.at(i) << ' ';
-    }
-    std::cout << '\n';
-}
-
-void printArray(int arr[], int size)
-{
-    int i;
-    for (i=0; i < size; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
-}
+//void print(std::vector<int> const &input) {
+//    for (int i = 0; i < input.size(); i++) {
+//        std::cout << input.at(i) << ' ';
+//    }
+//    std::cout << '\n';
+//}
+//
+//void printArray(int arr[], int size)
+//{
+//    int i;
+//    for (i=0; i < size; i++)
+//        printf("%d ", arr[i]);
+//    printf("\n");
+//}
 
 int main() {
 //    int Q = 343, V = 32767, P = 3, N = 10, K = 7;
@@ -77,14 +77,14 @@ int main() {
     std::cin >> Q >> V >> P >> N >> K;
 
     std::vector<int> nums = create_array(P, N, Q, V);
-    int* numa = &nums[0];
+    int *numa = &nums[0];
 
 //    printArray(numa, N);
 //    print(nums);
 
-    k_th(numa, K, N);
+//    k_th(numa, K, N);
 //    print(nums);
 
-    std::cout << numa[K - 1];
+    std::cout << k_th(numa, K, N);
     return 0;
 }
