@@ -17,7 +17,7 @@ std::vector<int> create_array(int p, int n, int q, int v) {
     return arr;
 }
 
-int partition(int *&arr, int begin, int end) {
+int partition(int* &arr, int begin, int end) {
     int piv_idx;
 
     std::swap(arr[end - 1], arr[(begin + end - 1) / 2]);
@@ -38,17 +38,17 @@ int partition(int *&arr, int begin, int end) {
     return piv_idx;
 }
 
-int k_th(int *&arr, int k, int n) {
+void k_th(int* &arr, int k, int n) {
     int begin = 0, end = n, pivot;
 
     while (true) {
         if (end - begin <= 1)
-            return INT_MAX;
+            return;
 
         pivot = partition(arr, begin, end);
 
         if (pivot == k)
-            return k;
+            return;
         else if (k < pivot)
             end = pivot;
         else
@@ -77,14 +77,14 @@ int main() {
     std::cin >> Q >> V >> P >> N >> K;
 
     std::vector<int> nums = create_array(P, N, Q, V);
-    int *numa = &nums[0];
+    int* numa = &nums[0];
 
 //    printArray(numa, N);
 //    print(nums);
 
-//    k_th(numa, K, N);
+    k_th(numa, K, N);
 //    print(nums);
 
-    std::cout << k_th(numa, K, N);
+    std::cout << numa[K - 1];
     return 0;
 }
